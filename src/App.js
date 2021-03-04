@@ -1,12 +1,15 @@
 import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
-import Products from './components/products/products';
+import Products from './components/products/Products';
 import styled from 'styled-components';
+import GlobalStyles from './styles/globalStyles';
+import Product from './components/products/Product';
 
 function App() {
   return (
     <AppWrapper>
+      <GlobalStyles/>
       <Router>
         <Switch>
           <Route exact path="/">
@@ -14,6 +17,9 @@ function App() {
           </Route>
           <Route path="/products">
             <Products />
+          </Route>
+          <Route path="/product/:id">
+            <Product />
           </Route>
         </Switch>
       </Router>

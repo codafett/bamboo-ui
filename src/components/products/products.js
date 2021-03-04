@@ -1,31 +1,40 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
+import { useHistory } from "react-router";
 import styled from "styled-components";
-import Title from "../title/title";
+import productApi from "../../api/ProductApi";
+import Title from "../title/Title";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const history = useHistory();
 
   useEffect(() => {
-    axios.get('http://localhost:3000/products').then(
-      (response) => {
-        setProducts(response.data);
-        setLoading(false);
-      } 
-    )
+    (async () => {
+      const data = await productApi.getAllProducts();
+      setProducts(data);
+      setLoading(false);
+    })();
   }, []);
 
+  function handleProductClick(productId) {
+    history.push(`/product/${productId}`)
+  }
+
   function renderProducts() {
-    return <><Title title="Products"></Title><ProductList>
+    return <><Title>Products</Title><ProductList>
       {
         products.map(
-          (product) => <Product>
+          (product) => <Product onClick={() => handleProductClick(product._id)}>
             <ProductDetails>
               <Name>{product.name}</Name>
-              <Price>{product.price}</Price>
+              <Price>£{product.price}</Price>
             </ProductDetails>
-            <Comments></Comments>
+            <Comments>
+              <div>
+                <div>Comments: {product.comments?.length}</div>
+              </div>
+            </Comments>
           </Product>
         )
       }
@@ -56,17 +65,22 @@ const ProductList = styled.div`
 const ProductDetails = styled.div`
   display: flex;
   justify-content: space-between;
+  text-transform: capitalize;
 `;
 
-const Name = styled.div``;
+const Name = styled.div`
+  font-size: 1.2rem;
+`;
 
 const Price = styled.div`
   width: 200px;
+  text-align: right;
 `;
 
 const Comments = styled.div`
   display: flex;
   flex-direction: column;
+  font-size: 0.8rem;
 `;
 
 export default Products;

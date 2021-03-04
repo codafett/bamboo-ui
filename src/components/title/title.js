@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-const Title = ({title}) => {
+const Title = ({children}) => {
   return <TitleWrapper>
-    {title}
+    {children}
   </TitleWrapper>
 };
 
