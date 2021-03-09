@@ -2,6 +2,10 @@ import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
 import productApi from "../../api/ProductApi";
+import Button from "../buttonBar/button";
+import ButtonBar from "../buttonBar/buttonBar";
+import Menu from "../menu/Menu";
+import MenuItem from "../menu/MenuItem";
 import Title from "../title/Title";
 
 const Products = () => {
@@ -18,31 +22,48 @@ const Products = () => {
   }, []);
 
   function handleProductClick(productId) {
-    history.push(`/product/${productId}`)
+    history.push(`/products/${productId}`)
+  }
+
+  function handleAddNewClick() {
+    history.push(`/products/new`)
   }
 
   function renderProducts() {
-    return <><Title>Products</Title><ProductList>
-      {
-        products.map(
-          (product) => <Product onClick={() => handleProductClick(product._id)}>
-            <ProductDetails>
-              <Name>{product.name}</Name>
-              <Price>£{product.price}</Price>
-            </ProductDetails>
-            <Comments>
-              <div>
-                <div>Comments: {product.comments?.length}</div>
-              </div>
-            </Comments>
-          </Product>
-        )
-      }
-    </ProductList></>
+    return <ProductsWrapper>
+        <Menu>
+          <MenuItem title="Products" />
+        </Menu>
+        <ButtonBar>
+          <Button title="Add Product" onClick={handleAddNewClick} />
+        </ButtonBar>
+        <ProductList>
+          {
+            products.map(
+              (product) => <Product key={product._id} onClick={() => handleProductClick(product._id)}>
+                <ProductDetails>
+                  <Name>{product.name}</Name>
+                  <Price>£{product.price}</Price>
+                </ProductDetails>
+                <Comments>
+                  <div>
+                    <div>Comments: {product.comments?.length}</div>
+                  </div>
+                </Comments>
+              </Product>
+            )
+          }
+        </ProductList>
+      </ProductsWrapper>
   }
 
   return loading? <h1>Loading</h1> : renderProducts();
 };
+
+const ProductsWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
 const Product = styled.div`
   display: flex;

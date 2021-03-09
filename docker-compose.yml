@@ -1,0 +1,15 @@
+version: "3.7"
+services:
+  bamboo-ui:
+    image: bamboo-ui
+    container_name: bamboo-ui
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:3000"
+networks:
+  default:
+    external:
+      name: bamboo
