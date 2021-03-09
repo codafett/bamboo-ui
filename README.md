@@ -9,7 +9,7 @@ npm run start
 ## Functionality Included:
 * List Products
 * View Product
-* Add Comment
+* Add Product
 * Add Comment
 
 ## Functionality Not Completed:
