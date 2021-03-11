@@ -2,11 +2,10 @@ import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
 import productApi from "../../api/ProductApi";
-import Button from "../buttonBar/button";
-import ButtonBar from "../buttonBar/buttonBar";
+import Button from "../buttonBar/Button";
+import ButtonBar from "../buttonBar/ButtonBar";
 import Menu from "../menu/Menu";
 import MenuItem from "../menu/MenuItem";
-import Title from "../title/Title";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
