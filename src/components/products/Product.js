@@ -3,7 +3,7 @@ import { withRouter } from "react-router";
 import { toast } from "react-toastify";
 import styled from "styled-components";
 import ProductApi from "../../api/ProductApi";
-import Button from "../buttonBar/button";
+import Button from "../buttonBar/Button";
 import Menu from "../menu/Menu";
 import MenuItem from "../menu/MenuItem";
 import Title from "../title/Title";
