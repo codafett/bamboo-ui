@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import colours from '../../styles/colours';
+
 
 const Button = ({title, onClick}) => {
   return <ButtonWrapper onClick={onClick}>
@@ -8,10 +10,10 @@ const Button = ({title, onClick}) => {
 
 const ButtonWrapper = styled.button`
   padding: 10px;
-  border: solid 1px #00e8ff;
+  border: solid 1px ${colours.PRIMARY.NORMAL};
   border-radius: 4px;
-  background: #00e8ff;
-  color: #ffffff;
+  background: ${colours.PRIMARY.NORMAL};
+  color: ${colours.BASE.NORMAL};
   cursor: pointer;
 `;
 

@@ -1,5 +1,10 @@
 # Bamboo UI
 
+Install dependencies
+```
+npm i
+```
+
 To run the project use:
 
 ```

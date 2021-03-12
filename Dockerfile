@@ -1,5 +1,5 @@
 # build environment
-FROM node:13.12.0-alpine as build
+FROM node:13.10.1-alpine as build
 WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
 COPY package.json ./
@@ -9,5 +9,5 @@ RUN npm install react-scripts@3.4.1 -g --silent
 COPY . ./
 RUN npm run build
 
-EXPOSE 3000
+
 CMD ["npm", "run", "start"]
